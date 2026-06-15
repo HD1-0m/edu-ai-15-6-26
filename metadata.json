@@ -1,0 +1,10 @@
+{
+  "name": "Remix: EduAI Assistant",
+  "description": "Your personal AI teacher for explaining topics, generating quizzes, creating notes, and evaluating your progress.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

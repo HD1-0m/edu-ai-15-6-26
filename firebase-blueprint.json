@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with preferences and learning history",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "theme": { "type": "string", "enum": ["light", "dark"] },
+        "aiSettings": { "type": "object" },
+        "progress": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId"]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "A conversation with messages",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "messages": { "type": "array" },
+        "timestamp": { "type": "object" }
+      },
+      "required": ["id", "title", "messages", "timestamp"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "A study note created from interactive learning",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "priority": { "type": "string" },
+        "folderId": { "type": "string" },
+        "timestamp": { "type": "object" }
+      },
+      "required": ["title", "content", "timestamp"]
+    },
+    "Folder": {
+      "title": "Folder",
+      "description": "A folder grouping multiple notes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "timestamp": { "type": "object" }
+      },
+      "required": ["name", "timestamp"]
+    },
+    "Quiz": {
+      "title": "QuizResult",
+      "description": "Calculated scores on student micro-quizzes",
+      "type": "object",
+      "properties": {
+        "topic": { "type": "string" },
+        "score": { "type": "number" },
+        "total": { "type": "number" },
+        "date": { "type": "string" },
+        "timestamp": { "type": "object" }
+      },
+      "required": ["topic", "score", "total", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Personalized settings and learning achievements of the user"
+    },
+    "/users/{userId}/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Historical context collections of messages and summaries"
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Extracted summarizations and text documentation for revisions"
+    },
+    "/users/{userId}/folders/{folderId}": {
+      "schema": "Folder",
+      "description": "Folder categorization tags"
+    },
+    "/users/{userId}/quizzes/{quizId}": {
+      "schema": "Quiz",
+      "description": "Quiz assessment metrics"
+    }
+  }
+}
